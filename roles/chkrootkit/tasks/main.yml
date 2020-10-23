@@ -1,0 +1,10 @@
+---
+- name: install package
+  package:
+    pkg: chkrootkit
+    state: present
+
+- name: configure
+  template:
+    src: chkrootkit.conf.j2
+    dest: /etc/chkrootkit.conf

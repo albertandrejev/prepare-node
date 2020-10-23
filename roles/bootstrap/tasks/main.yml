@@ -1,0 +1,20 @@
+---
+- name: set root password
+  user:
+    name: root
+    password: "{{ root_password }}"
+
+- name: install additional packages
+  package:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - vim
+    - git-core
+    - unzip
+    - htop
+    - curl
+    - sudo
+    - net-tools
+    - mailutils
+    - build-essential

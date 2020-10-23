@@ -1,0 +1,8 @@
+---
+- name: reconfigure exim
+  shell: /usr/sbin/update-exim4.conf
+
+- name: restart exim
+  service:
+    name: exim4
+    state: restarted

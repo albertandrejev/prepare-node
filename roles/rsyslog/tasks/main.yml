@@ -1,0 +1,14 @@
+---
+- name: check for journald logs
+  stat:
+    path: /etc/systemd/journald.conf
+  register: journald_logs_stat
+
+- name: forward journald logs to syslog
+  lineinfile:
+    dest: /etc/systemd/journald.conf
+    regexp: "#ForwardToSyslog=yes"
+    line: "ForwardToSyslog=yes"
+    state: present
+  notify: restart journald
+  when: journald_logs_stat.stat.exists

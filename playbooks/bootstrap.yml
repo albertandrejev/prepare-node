@@ -1,0 +1,8 @@
+---
+- hosts: network
+  gather_facts: false
+  strategy: free
+  vars_files:
+    - ../vars/infrastructure.yml # It should point to the Ansible Vault file. If you do not use vault then you can remove this.
+  roles:
+    - bootstrap

@@ -1,0 +1,5 @@
+---
+- name: install package
+  apt:
+    pkg: sudo
+    state: present

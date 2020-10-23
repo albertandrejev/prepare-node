@@ -1,0 +1,6 @@
+---
+validator_signer: ""
+validator_chain_id: ""
+
+validator_genesis_url: ""
+validator_genesis_checksum: ""

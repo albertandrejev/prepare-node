@@ -1,0 +1,2 @@
+# Show non-zero exit code when warnings are found
+error-on-warnings=yes

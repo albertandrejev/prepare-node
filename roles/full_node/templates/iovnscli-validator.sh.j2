@@ -1,0 +1,17 @@
+#!/bin/bash
+
+iovnscli tx staking create-validator \
+  --home {{ validator_iovns_work_dir }} \
+  --moniker '{{ validator_moniker }}' \
+  --amount 100000000uiov \
+  --commission-max-change-rate 0.01 \
+  --commission-max-rate 0.2 \
+  --commission-rate 0.1 \
+  --min-self-delegation 1 \
+  --from '{{ validator_signer }}' \
+  --pubkey $(iovnsd tendermint show-validator --home {{ validator_iovns_work_dir }}) \
+  --gas 150000 \
+  --gas-prices 1.0uiov \
+  --node https://rpc.iov-mainnet-2.iov.one:443 \
+  --chain-id {{ validator_chain_id }}
+  

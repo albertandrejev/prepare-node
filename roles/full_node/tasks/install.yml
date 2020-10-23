@@ -1,0 +1,107 @@
+---
+- name: install jq
+  apt:
+    pkg: jq
+    state: present
+
+- name: create validator user
+  user:
+    name: "{{ validator_username }}"
+    home: "{{ validator_homedir }}"
+    shell: "/bin/bash"
+
+- name: create {{ validator_iovns_work_dir }} directory
+  file:
+    path: "{{ validator_homedir }}"
+    owner: "{{ validator_username }}"
+    group: "{{ validator_username }}"
+    state: directory
+
+- name: Creates {{ validator_iovns_dir }} directory
+  file:
+    path: "{{ validator_iovns_dir }}"
+    owner: "{{ validator_username }}"
+    group: "{{ validator_username }}"
+    state: directory
+
+- name: create service
+  template:
+    src: "starname.service.j2"
+    dest: "/etc/systemd/system/starname.service"
+
+- name: run daemon-reload
+  shell: "systemctl daemon-reload"
+
+- name: Download and ensure file integrity
+  get_url:
+    url: "{{ validator_iovns_url }}"
+    dest: "{{ validator_iovns_dir }}"
+    checksum: "sha256:{{ validator_iovns_checksum }}"
+
+- name: Extract iovns sources
+  unarchive:
+    src: "{{ validator_iovns_dir }}/{{ validator_iovns_url | basename }}"
+    dest: "{{ validator_iovns_dir }}"
+    remote_src: yes
+    owner: "{{ validator_username }}"
+    group: "{{ validator_username }}"
+
+- name: create iovnsd-start.sh, a wrapper for iovnsd
+  template:
+    src: "{{ item.template }}"
+    dest: "{{ item.destination }}"
+    owner: "{{ validator_username }}"
+    group: "{{ validator_username }}"
+    mode: "a+x"
+  loop:
+    - template: "iovnsd-start.sh.j2"
+      destination: "{{ validator_iovns_dir }}/iovnsd-start.sh"
+    - template: "iovnscli-g.j2"
+      destination: "{{ validator_iovns_dir }}/iovnscli-g"
+    - template: "iovnsd-g.j2"
+      destination: "{{ validator_iovns_dir }}/iovnsd-g"
+
+- name: create iovnscli-validator.sh, a wrapper for iovnscli
+  template:
+    src: "iovnscli-validator.sh.j2"
+    dest: "{{ validator_iovns_dir }}/iovnscli-validator.sh"
+    owner: "{{ validator_username }}"
+    group: "{{ validator_username }}"
+    mode: "a+x"
+  when: inventory_hostname in groups['validator']
+
+- name: initialize IOV Name Service (iovnsd)
+  shell: "./iovnsd init '{{ validator_moniker }}' --chain-id {{ validator_chain_id }} --home {{ validator_iovns_work_dir }} 2>&1 | jq -r .chain_id"
+  args:
+    executable: /bin/bash
+    chdir: "{{ validator_iovns_dir }}"
+    creates: "{{ validator_iovns_work_dir }}/config/genesis.json"
+  become: yes
+  become_user: "{{ validator_username }}"
+  register: chain_id
+
+- name: check genesis file exists
+  stat:
+    path: "{{ validator_iovns_work_dir }}/config/genesis.json"
+  register: genesis_file_stat
+
+- name: Verify chain_id
+  fail:
+    msg: "Wrong chain id"
+  when: not genesis_file_stat.stat.exists and chain_id.stdout != validator_chain_id
+
+- name: Add genesis for the mainnet environment
+  include_tasks: genesis-mainnet.yml
+  when: iovns-mainnet is defined and iovns-mainnet == true
+
+- name: Add genesis for the testnet production environment
+  include_tasks: genesis-testnet.yml
+  when: iovns-mainnet is not defined or iovns-mainnet == false
+
+- name: Add another bin dir to system-wide $PATH.
+  copy:
+    dest: /etc/profile.d/iovns-path.sh
+    content: "PATH=$PATH:{{ validator_iovns_dir }}"
+
+- name: Update iovnsd config
+  include_tasks: update_config.yml

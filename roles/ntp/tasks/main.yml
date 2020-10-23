@@ -1,0 +1,5 @@
+---
+- name: install package
+  package:
+    pkg=ntp
+    state=present

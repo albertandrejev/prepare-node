@@ -1,0 +1,25 @@
+---
+- name: install package
+  package:
+    pkg: exim4
+    state: present
+
+# In order to configure exim you need to provide list of "exim_passwd_clients",
+# It is good to store variable in the Ansible Vault https://docs.ansible.com/ansible/latest/user_guide/vault.html
+- name: configure
+  template:
+    src: update-exim4.conf.conf.j2
+    dest: /etc/exim4/update-exim4.conf.conf
+  notify:
+    - reconfigure exim
+    - restart exim
+
+- name: configure authentication with external SMTP services
+  template:
+    src: passwd.client.j2
+    dest: /etc/exim4/passwd.client
+
+- name: start service
+  service:
+    name: exim4
+    state: started

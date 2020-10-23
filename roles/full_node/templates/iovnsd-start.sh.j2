@@ -1,0 +1,6 @@
+#!/bin/bash
+
+exec $PWD/iovnsd start \
+  --home={{ validator_iovns_work_dir }} \
+  --minimum-gas-prices='1.0uvoi' \
+  --moniker='node'  

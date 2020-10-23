@@ -1,0 +1,42 @@
+---
+- name: Get node id
+  shell: "curl -s http://127.0.0.1:46657/status | jq -r .result.node_info.id"
+  args:
+    executable: /bin/bash
+  register: node_id
+
+- name: Set temporary variable to store sentry configs
+  set_fact:
+    sentry_config: "{{ hostvars['COMMON_DATA_HOST']['sentry_config'] }}"
+    validator_ids: "{{ hostvars['COMMON_DATA_HOST']['validator_ids'] }}"
+
+- name: Prepare sentry node data
+  set_fact:
+    sentry_data:
+      id: "{{ node_id.stdout }}"
+      private_address: "{{ private_address }}"
+  when: node_id.stdout is defined and inventory_hostname in groups['sentry']
+
+- name: Add sentry node data to sentry config list
+  set_fact:
+    sentry_config: "{{ sentry_config }} + [ {{ sentry_data }} ]"
+  when: sentry_data is defined and inventory_hostname in groups['sentry']
+
+- name: Add validator node id to the list of node ids
+  set_fact:
+    validator_ids: "{{ validator_ids }} + [ '{{ node_id.stdout }}' ]"
+  when: node_id.stdout is defined and inventory_hostname in groups['validator']
+
+- name: Register dummy host with COMMON_DATA_HOST variable
+  add_host:
+    name: "COMMON_DATA_HOST"
+    sentry_config: "{{ sentry_config }}"
+    validator_ids: "{{ validator_ids }}"
+
+- name: Print the sentry config to the console.
+  debug:
+    var: sentry_config
+
+- name: Print the validator ids to the console.
+  debug:
+    var: validator_ids

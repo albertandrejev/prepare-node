@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Register dummy host with variable
+      add_host:
+        name: "COMMON_DATA_HOST"
+        sentry_config: []
+        validator_ids: []
+
+- hosts: network
+  gather_facts: false
+  serial: 1
+  roles:
+    - collect_nodes_ids

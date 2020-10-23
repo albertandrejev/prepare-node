@@ -1,0 +1,6 @@
+---
+- name: restart_starname
+  service:
+    name: starname
+    enabled: yes
+    state: restarted

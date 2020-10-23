@@ -1,0 +1,17 @@
+---
+validator_username: iovns
+validator_homedir: "/home/{{ validator_username }}"
+
+# operator variables
+validator_signer: ""
+validator_chain_id: iovns-galaxynet
+
+# directories (without spaces to ease pain)
+validator_iovns_dir: /opt/iovns/bin
+validator_iovns_work_dir: "{{ validator_homedir }}/{{ validator_chain_id }}"
+
+validator_iovns_url: https://github.com/iov-one/iovns/releases/download/v0.9.1/iovns-0.9.1-linux-amd64.tar.gz
+validator_iovns_checksum: f596e7561143bf482ea7a7bc799452ded2f446800fd79f807951122b20563382
+
+validator_iovns_genesis_url: https://rpc.cluster-galaxynet.iov.one/genesis
+validator_iovns_genesis_checksum: cff2bbe4f7c9ccc3900bf5879153e1622cd383609eca9d086147fc9c08078b83

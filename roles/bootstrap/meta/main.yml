@@ -1,0 +1,15 @@
+---
+dependencies:
+  - { role: apt }
+  - { role: fail2ban }
+  - { role: sudo }
+  - { role: singleplatform-eng.users }
+  - { role: ssh }
+  - { role: firewall }
+  - { role: jnv.unattended-upgrades }
+  - { role: ntp }
+  - { role: exim }
+  - { role: rsyslog }
+  - { role: rkhunter }
+  - { role: chkrootkit }
+  - { role: lynis }

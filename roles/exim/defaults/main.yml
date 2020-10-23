@@ -1,0 +1,16 @@
+---
+exim_dc_eximconfig_configtype: 'local'
+exim_dc_other_hostnames: '{{ ansible_hostname }}'
+exim_dc_local_interfaces: '127.0.0.1 ; ::1'
+exim_dc_readhost: ''
+exim_dc_relay_domains: ''
+exim_dc_minimaldns: 'false'
+exim_dc_relay_nets: ''
+exim_dc_smarthost: ''
+exim_CFILEMODE: '644'
+exim_dc_use_split_config: 'false'
+exim_dc_hide_mailname: ''
+exim_dc_mailname_in_oh: 'true'
+exim_dc_localdelivery: 'mail_spool'
+
+exim_passwd_clients: []

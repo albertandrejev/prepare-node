@@ -1,0 +1,10 @@
+---
+- name: install package
+  package:
+    pkg=fail2ban
+    state=present
+
+- name: start service
+  service:
+    name=fail2ban
+    state=started

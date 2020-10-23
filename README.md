@@ -1,0 +1,71 @@
+# Cosmostation Validator Operations Repository
+
+This repository contains ansible roles to control and setup Cosmostation validator infrastructure.
+
+## Minimum requirements
+
+* Debian 10 "Buster";
+* Two servers (validator and sentry);
+* Access via ssh by pub key;
+* Internal network with those two servers interconnect with each other.
+* Ansible 2.9
+
+## Installation of the additional roles
+
+In order to install dependent roles you should perform following command: `ansible-galaxy install --roles-path ./roles -r requirements.yml`
+
+## Initial configuration
+
+Before you will start using this software it is required to provide initial configuration to the roles. In most cases it is enough to set variables in the `group_vars/all` and in `group_vars/network` as well as in the `host_vars/<node IP address or domain name>` (see example).
+
+## Keys special directory
+
+`vars/` directory should contain additional variables for different purposes. Also please use directory to store Ansible Vault files.
+
+## Documentation
+
+Most of the variable uses self explanatory names , but in some cases additional comments added to the sources.
+
+Please note that prior production usage you should test those scripts on available testnets. For this you need to create separate clone of this repo and configure it to use testnet of the supported networks.
+
+## Supported networks
+
+1. IOV
+
+
+# Testing
+
+## Required software
+
+- Docker
+
+## Ansible environment installation
+
+- Init python virual environment: `python3 -m venv molecule-venv`
+- Activate environment: `source molecule-venv/bin/activate`
+- Install requirements: `pip install -r requirements.txt`
+- 
+
+## Examples
+
+### Initial hosts configuration
+
+```
+$ ansible-playbook playbooks/bootstrap.yml
+```
+
+This command will install all required software, services and users to operate infrastructure hosts.
+
+## Deploy single node
+
+```
+$ ansible-playbook -bK -u <user on the remote system> -l <host to install validator/sentry to> playbooks/full_node.yml 
+```
+
+Please use this command with caution because it will overwrite node configuration and it is possible that node will lost connection.
+
+## Deploy full infrastructure
+
+```
+$ ansible-playbook -bK -u <user on the remote system> playbooks/deploy.yml
+```

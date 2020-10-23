@@ -1,0 +1,10 @@
+---
+- name: Collect nodes ids
+  import_playbook: collect_nodes_ids.yml
+
+- hosts: network
+  gather_facts: false
+  vars:
+    node_config_update: true
+  roles:
+    - full_node

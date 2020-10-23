@@ -1,0 +1,9 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: False
+  tasks:
+    - name: install ssh
+      package:
+        pkg: ssh
+        state: latest

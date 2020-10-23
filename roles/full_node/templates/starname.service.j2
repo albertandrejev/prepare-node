@@ -1,0 +1,21 @@
+[Unit]
+Description=IOV Name Service
+After=network-online.target
+#PartOf=iovnsapi.service
+
+[Service]
+Type=simple
+User={{ validator_username }}
+Group={{ validator_username }}
+
+WorkingDirectory={{ validator_iovns_dir }}
+ExecStart={{ validator_iovns_dir }}/iovnsd-start.sh
+LimitNOFILE=8192
+Restart=always
+RestartSec=5
+StandardError=journal
+StandardOutput=journal
+SyslogIdentifier=iovnsd
+
+[Install]
+WantedBy=multi-user.target

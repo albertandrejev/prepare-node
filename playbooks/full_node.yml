@@ -1,0 +1,6 @@
+---
+- hosts: network
+  gather_facts: false
+  strategy: free
+  roles:
+    - full_node

@@ -1,0 +1,9 @@
+---
+- hosts: network
+  gather_facts: false
+  strategy: free
+  roles:
+    - full_node
+
+- name: Update nodes configurations
+  import_playbook: update_configs.yml

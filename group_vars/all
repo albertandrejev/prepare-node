@@ -1,0 +1,44 @@
+---
+# In order to create password has please use following instructions: 
+# https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
+root_password: "<root password hash>"
+
+unattended_origins_patterns:
+  - "origin=${distro_id},codename=${distro_codename},label=${distro_id}-Security"
+
+
+# All fields are self explained except password and ssh_key. 
+# Password field: Hashed password string. From https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
+# ssh_key field: array of public ssh keys to install to the system.
+# For instane:
+# ssh_key:
+    - "ssh-rsa <encoded public ssh key number 1> key_identifier_1"
+    - "ssh-rsa <encoded public ssh key number 2> key_identifier_2"
+
+users:
+  - username: <login name>
+    name: <Account name>
+    uid: <account user id>
+    groups: ["sudo"] # if you want to allow this user to run commands with super user priveleges then leave "sudo" groups her. Otherwise remove it
+    password: "" # Hashed password string. This password will be used to run "sudo" commands
+    ssh_key:
+    - "ssh-rsa <example of the encoded public ssh key number 1> key_identifier_1"
+
+# Exim mail server configuration. Used to send notification messages and different reports
+exim_dc_eximconfig_configtype: 'satellite'
+exim_dc_hide_mailname: 'true'
+exim_dc_readhost: '' # system host. You can use "{{ ansible_hostname }}.<your domain name>" value
+exim_dc_smarthost: '' # Relay SMTP server address.
+
+reports_email: '' # Email where to send reports and notifications
+
+rkhunter_report_email: '{{ reports_email }}'
+
+validator_moniker: '' # Validator moniker name
+
+# Put default firewall rules here. Current rule allows all connections from class C internal network
+firewall_default_rules:
+  - rule: allow
+    from: 192.168.0.0/24
+
+

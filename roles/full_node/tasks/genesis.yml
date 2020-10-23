@@ -1,0 +1,8 @@
+---
+- name: Download and ensure file integrity
+  get_url:
+    url: "{{ validator_iovns_genesis_url }}"
+    dest: "{{ validator_iovns_work_dir }}/config/genesis.json"
+    checksum: "sha256:{{ validator_iovns_genesis_checksum }}"
+    owner: "{{ validator_username }}"
+    group: "{{ validator_username }}"

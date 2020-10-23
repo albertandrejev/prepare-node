@@ -1,0 +1,3 @@
+firewall_ssh_rules:
+  - rule: allow
+    port: ssh

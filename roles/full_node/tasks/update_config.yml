@@ -1,0 +1,47 @@
+---
+- name: Set temporary variable to store sentry configs
+  set_fact:
+    sentry_config: "{{ hostvars['COMMON_DATA_HOST']['sentry_config'] }}"
+  when: hostvars['COMMON_DATA_HOST'] is defined
+    and hostvars['COMMON_DATA_HOST']['sentry_config'] is defined
+
+- name: Set empty temporary variable to store sentry configs
+  set_fact:
+    sentry_config: "{{ [] }}"
+  when: hostvars['COMMON_DATA_HOST'] is defined
+    and hostvars['COMMON_DATA_HOST']['sentry_config'] is not defined
+
+- name: Set temporary variable to store validator ids
+  set_fact:
+    validator_ids: "{{ hostvars['COMMON_DATA_HOST']['validator_ids'] }}"
+  when: hostvars['COMMON_DATA_HOST'] is defined
+    and hostvars['COMMON_DATA_HOST']['validator_ids'] is defined
+
+- name: Set empty temporary variable to store validator ids
+  set_fact:
+    validator_ids: "{{ [] }}"
+  when: hostvars['COMMON_DATA_HOST'] is defined
+    and hostvars['COMMON_DATA_HOST']['validator_ids'] is not defined
+
+- name: Set temporary variable to store sentry configs
+  set_fact:
+    sentry_config: "{{ [] }}"
+    validator_ids: "{{ [] }}"
+  when: hostvars['COMMON_DATA_HOST'] is not defined
+
+- name: Print the sentry config to the console.
+  debug:
+    var: sentry_config
+
+- name: Print the validator ids to the console.
+  debug:
+    var: validator_ids
+
+- name: update iovnsd configuration
+  template:
+    src: "config.toml.j2"
+    dest: "{{ validator_iovns_work_dir }}/config/config.toml"
+    owner: "{{ validator_username }}"
+    group: "{{ validator_username }}"
+  notify:
+    - restart_starname

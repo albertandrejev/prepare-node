@@ -1,0 +1,4 @@
+---
+chkrootkit_run_daily: "true"
+chkrootkit_run_daily_opts: "-q"
+chkrootkit_diff_mode: "true"

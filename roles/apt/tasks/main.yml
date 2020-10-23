@@ -1,0 +1,15 @@
+---
+- name: update cache
+  apt:
+    update_cache: yes
+    cache_valid_time: "{{ apt_cache_valid_time | int }}"
+
+- name: install apt-transport-https
+  apt:
+    pkg=apt-transport-https
+    state=present
+
+- name: install aptitude
+  apt:
+    pkg=aptitude
+    state=present

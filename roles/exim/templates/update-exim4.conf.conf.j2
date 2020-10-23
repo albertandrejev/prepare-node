@@ -1,0 +1,31 @@
+# /etc/exim4/update-exim4.conf.conf
+#
+# Edit this file and /etc/mailname by hand and execute update-exim4.conf
+# yourself or use 'dpkg-reconfigure exim4-config'
+#
+# Please note that this is _not_ a dpkg-conffile and that automatic changes
+# to this file might happen. The code handling this will honor your local
+# changes, so this is usually fine, but will break local schemes that mess
+# around with multiple versions of the file.
+#
+# update-exim4.conf uses this file to determine variable values to generate
+# exim configuration macros for the configuration file.
+#
+# Most settings found in here do have corresponding questions in the
+# Debconf configuration, but not all of them.
+#
+# This is a Debian specific file
+
+dc_eximconfig_configtype='{{ exim_dc_eximconfig_configtype }}'
+dc_other_hostnames='{{ exim_dc_other_hostnames }}'
+dc_local_interfaces='{{ exim_dc_local_interfaces }}'
+dc_readhost='{{ exim_dc_readhost }}'
+dc_relay_domains='{{ exim_dc_relay_domains }}'
+dc_minimaldns='{{ exim_dc_minimaldns }}'
+dc_relay_nets='{{ exim_dc_relay_nets }}'
+dc_smarthost='{{ exim_dc_smarthost }}'
+CFILEMODE='{{ exim_CFILEMODE }}'
+dc_use_split_config='{{ exim_dc_use_split_config }}'
+dc_hide_mailname='{{ exim_dc_hide_mailname }}'
+dc_mailname_in_oh='{{ exim_dc_mailname_in_oh }}'
+dc_localdelivery='{{ exim_dc_localdelivery }}'

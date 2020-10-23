@@ -1,0 +1,4 @@
+---
+firewall_rules:
+  - port: 26656
+    rule: allow

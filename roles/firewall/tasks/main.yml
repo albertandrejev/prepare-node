@@ -1,0 +1,29 @@
+---
+- name: install package
+  apt:
+    pkg=ufw
+    state=present
+
+- name: reset
+  ufw:
+    state=reset
+
+- name: configure rules
+  ufw:
+    name="{{ item.name | default(omit) }}"
+    rule="{{ item.rule }}"
+    port="{{ item.port | default(omit) }}"
+    from="{{ item.from | default(omit) }}"
+    to="{{ item.to | default(omit) }}"
+    proto="{{ item.proto | default (omit) }}"
+
+  with_flattened:
+    - '{{ firewall_ssh_rules }}'
+    - '{{ firewall_default_rules }}'
+    - '{{ firewall_rules }}'
+
+- name: enable
+  ufw:
+    logging=on
+    state=enabled
+    policy=deny
