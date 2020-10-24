@@ -16,7 +16,7 @@ In order to install dependent roles you should perform following command: `ansib
 
 ## Initial configuration
 
-Before you will start using this software it is required to provide initial configuration to the roles. First of all you will need to copy content of the `.sample` files in the `host_vars` and `groups_vars` directories to the appropriate names without extensions. In most cases it is enough to set variables in the `group_vars/all` and in `group_vars/network` as well as in the `host_vars/<node IP address or domain name>` (see samples).
+Before you will start using this software it is required to provide initial configuration to the roles. First of all you will need to copy content of the `.sample` files in the project root (`inventory.sample`), `host_vars` and `groups_vars` directories to the appropriate names without extensions. In most cases it is enough to set variables in the `group_vars/all` and in `group_vars/network` as well as in the `host_vars/<node IP address or domain name>` (see samples).
 
 ## Keys special directory
 
