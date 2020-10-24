@@ -1,4 +1,5 @@
 wheel
+pylint
 molecule[lint]
 molecule-docker
 testinfra
