@@ -6,4 +6,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+host_vars/
+!host_vars/host_name.sample
+
+group_vars/
+!group_vars/all.sample
+!group_vars/network.sample
+!group_vars/sentry.sample
+
+
 
