@@ -6,6 +6,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+# Vars configurations
 host_vars/
 !host_vars/host_name.sample
 
@@ -14,4 +16,9 @@ group_vars/
 !group_vars/network.sample
 !group_vars/sentry.sample
 
+# Molecule python environment
 molecule-venv/
+
+# Ignore ansible galazy roles
+roles/jnv.unattended-upgrades/
+roles/singleplatform-eng.users/
