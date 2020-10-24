@@ -3,6 +3,7 @@
   file:
     path: /opt
     state: directory
+    mode: 0755
 
 - name: install Mutt package
   package:
@@ -12,8 +13,9 @@
 - name: Download and extract Lynis
   unarchive:
     src: "{{ lynis_download_url }}"
-    dest: "{{lynis_home_dir}}"
-    copy: no
+    dest: "{{ lynis_home_dir }}"
+    mode: 0644
+    copy: false
 
 - name: upload cron run script
   template:
@@ -24,7 +26,7 @@
 - name: create custom Lynis configuration
   copy:
     src: custom.prf
-    dest: "{{lynis_home_dir}}/lynis/custom.prf"
+    dest: "{{ lynis_home_dir }}/lynis/custom.prf"
     owner: root
     group: root
     mode: 0644
