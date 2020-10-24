@@ -14,5 +14,4 @@ group_vars/
 !group_vars/network.sample
 !group_vars/sentry.sample
 
-
-
+molecule-venv/
