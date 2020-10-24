@@ -7,12 +7,6 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 
-def test_password_and_root_login_disabled(host):
-    sshd_config = host.file("/etc/ssh/sshd_config")
-    assert sshd_config.contains("PasswordAuthentication no")
-    assert sshd_config.contains("PermitRootLogin no")
-
-def test_sshd_is_running_and_enabled(host):
-    sshd = host.service("sshd")
-    assert sshd.is_running
-    assert sshd.is_enabled
+def test_journald_syslogd_forwarding_set(host):
+    sshd_config = host.file("/etc/systemd/journald.conf")
+    assert sshd_config.contains("^ForwardToSyslog=yes$")
