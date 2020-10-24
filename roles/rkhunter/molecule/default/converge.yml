@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include rkhunter"
+      include_role:
+        name: "rkhunter"
