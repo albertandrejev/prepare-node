@@ -6,11 +6,14 @@ This repository contains ansible roles to control and setup Cosmostation validat
 
 * Debian 10 "Buster";
 * Access via ssh by pub key;
-* Ansible 2.9
+* Ansible > 2.9
 
-## Installation of the additional roles
+## Running
 
-In order to install dependent roles you should perform following command: `ansible-galaxy install --roles-path ./roles -r requirements.yml`
+- Init python virual environment: `python3 -m venv molecule-venv`
+- Activate environment: `source molecule-venv/bin/activate`
+- Install requirements: `pip install -r requirements.txt`
+- Install additional roles: `ansible-galaxy install --roles-path ./roles -r requirements.yml`
 
 ## Initial configuration
 
@@ -32,14 +35,6 @@ Please note that prior production usage you should test those scripts on availab
 ## Required software
 
 - Docker
-
-## Ansible environment installation
-
-- Init python virual environment: `python3 -m venv molecule-venv`
-- Activate environment: `source molecule-venv/bin/activate`
-- Install requirements: `pip install -r requirements.txt`
-- 
-
 ## Examples
 
 ### Initial hosts configuration

@@ -3,3 +3,4 @@ pylint
 molecule[lint]
 molecule-docker
 testinfra
+ansible ~= 4.6.0

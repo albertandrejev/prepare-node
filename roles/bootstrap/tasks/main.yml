@@ -18,3 +18,5 @@
     - net-tools
     - mailutils
     - build-essential
+    - mc
+    - jq

@@ -3,6 +3,7 @@ dependencies:
   - { role: apt }
   - { role: fail2ban }
   - { role: sudo }
+  - { role: gantsign.golang }
   - { role: singleplatform-eng.users }
   - { role: ssh }
   - { role: firewall }

@@ -13,8 +13,6 @@ host_vars/
 
 group_vars/
 !group_vars/all.sample
-!group_vars/network.sample
-!group_vars/sentry.sample
 
 inventory
 
