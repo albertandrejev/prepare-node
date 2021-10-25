@@ -1,5 +1,0 @@
----
-lynis_download_url: "https://downloads.cisofy.com/lynis/lynis-2.6.4.tar.gz"
-lynis_version: "2.6.4"
-lynis_home_dir: "/opt"
-lynis_admin_notitification_email: albert.andrejev@gmail.com

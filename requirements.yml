@@ -1,2 +1,4 @@
 - src: singleplatform-eng.users
 - src: jnv.unattended-upgrades
+- src: cloudalchemy.node_exporter
+- src: gantsign.golang

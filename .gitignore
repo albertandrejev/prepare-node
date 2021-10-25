@@ -24,3 +24,5 @@ molecule-venv/
 # Ignore ansible galazy roles
 roles/jnv.unattended-upgrades/
 roles/singleplatform-eng.users/
+roles/cloudalchemy.node_exporter/
+roles/gantsign.golang/

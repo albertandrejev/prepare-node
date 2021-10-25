@@ -1,5 +1,5 @@
 ---
-- hosts: network
+- hosts: bootstrap
   gather_facts: false
   strategy: free
   vars_files:

@@ -1,8 +1,0 @@
----
-- name: Update full node config
-  include_tasks: update_config.yml
-  when: node_config_update is defined and node_config_update
-
-- name: Install full node
-  include_tasks: install.yml
-  when: node_config_update is not defined or not node_config_update

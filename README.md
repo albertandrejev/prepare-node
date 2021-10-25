@@ -5,9 +5,7 @@ This repository contains ansible roles to control and setup Cosmostation validat
 ## Minimum requirements
 
 * Debian 10 "Buster";
-* Two servers (validator and sentry);
 * Access via ssh by pub key;
-* Internal network with those two servers interconnect with each other.
 * Ansible 2.9
 
 ## Installation of the additional roles
@@ -27,10 +25,6 @@ Before you will start using this software it is required to provide initial conf
 Most of the variable uses self explanatory names , but in some cases additional comments added to the sources.
 
 Please note that prior production usage you should test those scripts on available testnets. For this you need to create separate clone of this repo and configure it to use testnet of the supported networks.
-
-## Supported networks
-
-1. IOV
 
 
 # Testing
@@ -55,17 +49,3 @@ $ ansible-playbook playbooks/bootstrap.yml
 ```
 
 This command will install all required software, services and users to operate infrastructure hosts.
-
-## Deploy single node
-
-```
-$ ansible-playbook -bK -u <user on the remote system> -l <host to install validator/sentry to> playbooks/full_node.yml 
-```
-
-Please use this command with caution because it will overwrite node configuration and it is possible that node will lost connection.
-
-## Deploy full infrastructure
-
-```
-$ ansible-playbook -bK -u <user on the remote system> playbooks/deploy.yml
-```

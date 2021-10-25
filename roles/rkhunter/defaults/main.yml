@@ -1,7 +1,0 @@
----
-rkhunter_cron_daily_run: "true"
-rkhunter_cron_db_update: "true"
-rkhunter_db_update_email: "true"
-rkhunter_apt_autogen: "true"
-
-rkhunter_report_email: "root"
