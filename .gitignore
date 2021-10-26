@@ -6,12 +6,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-
-# Vars configurations
-host_vars/
-!host_vars/host_name.sample
-
-group_vars/
 !group_vars/all.sample
 
 inventory
