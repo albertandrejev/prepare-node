@@ -1,9 +1,0 @@
-[network:children]
-sentry
-validator
-
-# Sentry group contains list of sentry nodes
-[sentry]
-
-# This group should contain validator node address.
-[validator]
