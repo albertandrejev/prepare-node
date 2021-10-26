@@ -1,4 +1,4 @@
-# Cosmostation Validator Operations Repository
+# Validator initial server configuration
 
 This repository contains ansible roles to control and setup Cosmostation validator infrastructure.
 
