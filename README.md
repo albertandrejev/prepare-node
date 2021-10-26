@@ -30,12 +30,6 @@ Most of the variable uses self explanatory names , but in some cases additional 
 
 Please note that prior production usage you should test those scripts on available testnets. For this you need to create separate clone of this repo and configure it to use testnet of the supported networks.
 
-
-# Testing
-
-## Required software
-
-- Docker
 ## Examples
 
 ### Initial hosts configuration
@@ -45,3 +39,10 @@ $ ansible-playbook playbooks/bootstrap.yml
 ```
 
 This command will install all required software, services and users to operate infrastructure hosts.
+
+# Testing
+
+## Required software
+
+- Docker
+
