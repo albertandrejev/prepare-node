@@ -5,8 +5,13 @@ This repository contains ansible roles to control and setup Cosmostation validat
 ## Minimum requirements
 
 * Debian 10 "Buster";
-* Access via ssh by pub key;
+* Access to root using ssh by pub key or password;
 * Ansible > 2.9
+
+## Initial configuration
+
+Before you will start using this software it is required to provide initial configuration to the roles.
+First of all you will need to copy content of the `.sample` files in the project root (`inventory.sample`) and `groups_vars` directories to the appropriate names without extensions. In most cases it is enough to set variables in the `group_vars/all` and add IP address of the server to the `invenotory` file into `bootstrap` group.
 
 ## Running
 
@@ -14,10 +19,6 @@ This repository contains ansible roles to control and setup Cosmostation validat
 - Activate environment: `source molecule-venv/bin/activate`
 - Install requirements: `pip install -r requirements.txt`
 - Install additional roles: `ansible-galaxy install --roles-path ./roles -r requirements.yml`
-
-## Initial configuration
-
-Before you will start using this software it is required to provide initial configuration to the roles. First of all you will need to copy content of the `.sample` files in the project root (`inventory.sample`), `host_vars` and `groups_vars` directories to the appropriate names without extensions. In most cases it is enough to set variables in the `group_vars/all` and in `group_vars/network` as well as in the `host_vars/<node IP address or domain name>` (see samples).
 
 ## Keys special directory
 
