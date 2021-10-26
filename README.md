@@ -1,6 +1,6 @@
 # Validator initial server configuration
 
-This repository contains ansible roles to control and setup Cosmostation validator infrastructure.
+This repository contains ansible playbooks to setup Cosmos SDK based infrastructure.
 
 ## Minimum requirements
 
