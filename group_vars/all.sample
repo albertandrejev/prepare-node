@@ -23,6 +23,7 @@ users:
     password: "" # Hashed password string. This password will be used to run "sudo" commands
     profile: |
       export GOPATH=$HOME/work
+      export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
     ssh_key:
     - "ssh-rsa <example of the encoded public ssh key number 1> key_identifier_1"
 
