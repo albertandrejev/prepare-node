@@ -1,0 +1,24 @@
+---
+- name: install epel repository
+  package:
+    pkg=epel-release
+    state=present
+  when: ansible_os_family == 'CentOS'
+
+- name: install package
+  package:
+    pkg=rkhunter
+    state=present
+
+- name: configure init
+  template:
+    src=rkhunter.j2
+    dest=/etc/default/rkhunter
+
+- name: upload rkhunter local config
+  template:
+    src=rkhunter.conf.local.j2
+    dest=/etc/rkhunter.conf.local
+    owner=root
+    group=root
+    mode=644

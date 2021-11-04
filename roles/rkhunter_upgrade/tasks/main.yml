@@ -1,0 +1,24 @@
+---
+- name: download and extract
+  unarchive:
+    src="{{ rkhunter_download_url }}"
+    dest="/tmp"
+    copy=no
+
+
+- name: Install rkhunter upgrade.
+  become: true
+  become_user: root
+  command: ./installer.sh --layout /usr --install
+  args:
+    chdir: /tmp/rkhunter-{{rkhunter_version}}
+
+- name: Update rkhunter database
+  become: true
+  become_user: root
+  command: rkhunter --propupd
+
+- name: Remove rkhunter installation files
+  file:
+    path: /tmp/rkhunter-{{rkhunter_version}}
+    state: absent
