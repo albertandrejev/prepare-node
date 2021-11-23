@@ -1,0 +1,13 @@
+---
+- name: install package
+  package:
+    pkg: tmux
+    state: present
+
+- name: configure tmux
+  copy:
+    src: tmux.conf
+    dest: /etc/tmux.conf
+    owner: root
+    group: root
+    mode: 644

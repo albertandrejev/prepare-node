@@ -11,5 +11,6 @@ dependencies:
   - { role: ntp }
   - { role: exim }
   - { role: rsyslog }
+  - { role: tmux }
   - { role: rkhunter }
   - { role: cloudalchemy.node_exporter }
