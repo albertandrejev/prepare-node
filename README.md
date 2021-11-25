@@ -15,10 +15,7 @@ First of all you will need to copy content of the `.sample` files in the project
 
 ## Running
 
-- Init python virual environment: `python3 -m venv molecule-venv`
-- Activate environment: `source molecule-venv/bin/activate`
-- Install requirements: `pip install -r requirements.txt`
-- Install additional roles: `ansible-galaxy install --roles-path ./roles -r requirements.yml`
+- Init python virual environment with all dependencies: `source setup_venv.sh`
 
 ## Keys special directory
 
