@@ -1,0 +1,6 @@
+---
+- name: install Cosmovisor
+  shell: go install github.com/cosmos/cosmos-sdk/cosmovisor/cmd/cosmovisor@latest
+  environment:
+    GOPATH: "{{ ansible_env.HOME }}/work"
+    PATH: "{{ ansible_env.PATH }}:{{ ansible_local['golang']['general']['home'] }}/bin:{{ ansible_env.HOME }}/work/bin"

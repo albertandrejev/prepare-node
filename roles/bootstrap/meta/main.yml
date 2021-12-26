@@ -4,6 +4,7 @@ dependencies:
   - { role: fail2ban }
   - { role: sudo }
   - { role: gantsign.golang }
+  - { role: cosmosvisor } # Should be installed after golang
   - { role: singleplatform-eng.users }
   - { role: ssh }
   - { role: firewall }
